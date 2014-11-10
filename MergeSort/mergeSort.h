@@ -76,10 +76,10 @@ void merge(std::vector<T>& array, const std::vector<T>& left, const std::vector<
     }
 
     // display merge process
-    for(unsigned j=0;j<result.size();j++)
-    {
-        std::cout<<result[j]<<" ";
-    }
+//    for(unsigned j=0;j<result.size();j++)
+//    {
+//        std::cout<<result[j]<<" ";
+//    }
 
     // assign the result back to array 
     array = result;
