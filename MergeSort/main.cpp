@@ -28,9 +28,13 @@ int main(int argc, char *argv[])
     }
     else
     {
-        while(input.good() && !input.eof())
+        // bad practice here!
+        //while(input.good() && !input.eof())
+        // good practice in the following, see
+        // http://stackoverflow.com/questions/5605125/why-is-iostreameof-inside-a-loop-condition-considered-wrong
+        while(input >> temp)
         {
-            input>>temp;
+            //input>>temp;
             array.push_back(temp);
         }
         input.close();
@@ -44,12 +48,15 @@ int main(int argc, char *argv[])
     // const_iterator means that the data pointed by this iterator cannot
     // be modified during the loop 
     // http://stackoverflow.com/questions/10750057/c-printing-out-the-contents-of-a-vector
-    //for(vector<int>::const_iterator i = array.begin(); i != array.end(); i++)
+    for(vector<int>::const_iterator i = array.begin(); i != array.end(); i++)
+        cout<<*i<<" "<<endl;
     while(!array.empty())
     {
         // always search the first element of array
+        cout<<"arry size now is:"<<array.size()<<endl;
         j = binarySearch(result, 0, result.size() - 1, array[0]); 
-        numInversions += (j - 1);
+        numInversions += j;
+        cout<<"number of inversions now is:"<<numInversions<<endl;
         result.erase(result.begin() + j);
         array.erase(array.begin());
     }

@@ -34,9 +34,10 @@ std::vector<T> mergeSort(std::vector<T>& array)
     left = mergeSort(left);
     right = mergeSort(right);
 
-    // assign merge result to array so that to avoid return for merge function
-    merge(array, left, right);
-    return array;
+    // assign merge result to result so that to avoid return for merge function
+    std::vector<T> result;
+    merge(result, left, right);
+    return result;
 }
 
 template <typename T>
