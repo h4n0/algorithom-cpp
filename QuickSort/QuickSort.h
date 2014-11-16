@@ -7,7 +7,7 @@
 
 #include <iostream>
 #include <functional>   // std::less_equal
-#include <algorithm>    // std::iter_swap
+#include <algorithm>    // std::swap
 #include <iterator>     // std::iterator_traits
 
 // Here the parameter last is not pointed to last element, but the one afte last one
@@ -21,9 +21,9 @@ void QuickSort(BidirectionalIterator first, BidirectionalIterator last, Compare 
     {
         BidirectionalIterator left = first;
         BidirectionalIterator right = last;
-        // assign current first to pivot and then first++
+        // assign current first to pivot and then left++
         // a little bit zhuangbi(chinese) to implement like this
-        BidirectionalIterator pivot = first++;
+        BidirectionalIterator pivot = left++;
 
         // right is the iterator after last element, so if left is equal to right,
         // the loop should be over
@@ -47,7 +47,7 @@ void QuickSort(BidirectionalIterator first, BidirectionalIterator last, Compare 
                     {
                         --right;
                     }
-                    std::iter_swap( left, right);
+                    std::swap( *left, *right);
                 }
             }
 
@@ -56,7 +56,7 @@ void QuickSort(BidirectionalIterator first, BidirectionalIterator last, Compare 
         // left now is closed to right
         // pivot, ..., left, right, ...
         --left;
-        std::iter_swap( pivot, left);
+        std::swap( *pivot, *left);
 
         QuickSort( first, left, compare);
         QuickSort( right, last, compare);
